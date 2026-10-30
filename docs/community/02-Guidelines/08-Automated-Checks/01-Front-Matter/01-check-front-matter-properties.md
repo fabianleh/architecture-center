@@ -1,6 +1,6 @@
 ---
-sidebar_position: 5
-slug: /community/automated-checks/front-matter-properties
+sidebar_position: 1
+slug: /community/automated-checks/front-matter/properties
 title: Front Matter Properties Check for Reference Architectures
 description: "How the front matter properties check validates authorship, dates, and house-style fields on changed reference architecture pages, and why it can block a merge."
 sidebar_label: Front Matter Properties
@@ -23,12 +23,12 @@ unlisted: false
 contributors:
 last_update:
   author: cernus76
-  date: 2026-10-15
+  date: 2026-10-28
 ---
 
 The **Front Matter Properties** check reads the front matter block at the top of every reference architecture (RA) page you touched in a pull request and makes sure it follows house style, and that it credits you and carries a fresh date. It is a **blocking** check: if a page drifts from the rules below, the check fails and the merge is held until you fix it.
 
-If you are new to front matter, read the [front matter guide](../04-front-matter.md) first. This page explains the automated rules that sit on top of it.
+If you are new to front matter, read the [front matter guide](../../04-front-matter.md) first. This page explains the automated rules that sit on top of it.
 
 ## What this check looks at
 
@@ -62,11 +62,11 @@ These six fields have sensible Docusaurus defaults. The check only complains whe
 | `hide_title` | `false` | The page title renders from front matter. |
 | `toc_min_heading_level` | `2` | Matches the site default. |
 | `toc_max_heading_level` | `4` | Matches the site default. |
-| `draft` | `false` | A `draft` page is not deployed. |
-| `unlisted` | `false` | An `unlisted` page is hidden from navigation. |
+| `draft` | `false` | A `draft` page is not deployed. Maintainers may override (see exemption below). |
+| `unlisted` | `false` | An `unlisted` page is hidden from navigation. Maintainers may override (see exemption below). |
 
 :::tip
-The simplest way to stay green here is to copy the field values straight from the [front matter guide](../04-front-matter.md) and not change them.
+The simplest way to stay green here is to copy the field values straight from the [front matter guide](../../04-front-matter.md) and not change them.
 :::
 
 ### Group B: authorship fields
@@ -84,7 +84,7 @@ The date rule has a 7-day freshness window. A `last_update.date` more than a wee
 :::
 
 :::note Maintainer exemption
-The repository maintainers `cernus76`, `navyakhurana`, `julian-schambeck`, and `fabianleh` are exempt from all three Group B authorship checks. This lets them make quick fixes on pages they did not author without changing authorship credit or update metadata. All six Group A default-value checks still apply to them.
+The repository maintainers `cernus76`, `navyakhurana`, `julian-schambeck`, and `fabianleh` are exempt from the three Group B authorship checks, and may also set `draft` or `unlisted` to `true` (those two Group A checks are skipped for them). This lets them unlist or hold back a page, and make quick fixes on pages they did not author, without changing authorship credit or update metadata. The other four Group A default-value checks still apply to them.
 :::
 
 ## Where you will see the results
@@ -129,7 +129,7 @@ Checklist:
 - Set `last_update.date` to today, in `YYYY-MM-DD` format.
 - Leave the Group A fields at their expected values, or remove them to use the defaults.
 
-Push the fix to the same branch and the check re-runs automatically. For a full field-by-field reference, see the [front matter guide](../04-front-matter.md).
+Push the fix to the same branch and the check re-runs automatically. For a full field-by-field reference, see the [front matter guide](../../04-front-matter.md).
 
 :::note
 These rules apply to **authored reference architecture pages** under `docs/ref-arch/RA####/`. They do **not** apply to community guideline pages like this one, so the author and date fields here follow a different convention.
@@ -137,9 +137,9 @@ These rules apply to **authored reference architecture pages** under `docs/ref-a
 
 ## Related pages
 
-- [Automated Checks overview](readme.md)
-- [SEO Front Matter](06-check-seo-front-matter.md)
-- [Reference Architecture IDs](07-check-reference-architecture-ids.md)
-- [Errors & Warnings](13-pr-checks-errors-and-warnings.md)
-- [Front matter guide](../04-front-matter.md)
-- [Contribution process](../01-contribution.md)
+- [Automated Checks overview](../readme.md)
+- [SEO Front Matter](02-check-seo-front-matter.md)
+- [Reference Architecture IDs](03-check-reference-architecture-ids.md)
+- [Errors & Warnings](../13-pr-checks-errors-and-warnings.md)
+- [Front matter guide](../../04-front-matter.md)
+- [Contribution process](../../01-contribution.md)
